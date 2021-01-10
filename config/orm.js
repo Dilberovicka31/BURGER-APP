@@ -21,7 +21,7 @@ const orm = {
 
   insertBurger: function (table, columns, values, callback) {
     const sqlQuery =
-      "INSERT INTO" +
+      "INSERT INTO " +
       table +
       "(" +
       columns.toString() +
@@ -40,7 +40,7 @@ const orm = {
 
   updateBurger: function (table, values, condition, callback) {
     const sqlQuery =
-      "UPDATE" + table + "SET" + values + " ? " + "WHERE" + condition;
+      "UPDATE " + table + "SET" + values + " ? " + "WHERE" + condition;
     console.log(sqlQuery);
     connection.query(sqlQuery, function (err, result) {
       if (err) throw err;

@@ -1,27 +1,19 @@
-var express = require("express");
+const mysql = require("mysql");
+const util = require("util");
 
-var PORT = process.env.PORT || 3000;
-
-var app = express();
-
-// Serve static content
-app.use(express.static("public"));
-
-// Parse request body as JSON
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-// Set Handlebars.
-var exphbs = require("express-handlebars");
-
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
-
-// Import routes and give the server access to them.
-var routes = require("./controllers/burgers_controller.js");
-
-app.use(routes);
-
-app.listen(PORT, function () {
-  console.log("App now listening at localhost:" + PORT);
+const connection = mysql.createConnection({
+  host: "localhost",
+  port: 3306,
+  user: "root",
+  password: "PASSWORD",
+  database: "burgers_db",
 });
+
+connection.connect(function (err) {
+  if (err) throw err;
+  console.log("Connected as id" + connection.threadId);
+});
+
+connection.query = util.promisify(connection.query);
+
+module.exports = connection;
