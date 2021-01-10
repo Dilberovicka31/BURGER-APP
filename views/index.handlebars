@@ -1,8 +1,48 @@
-<img src="/img/hamburger2.jpg" alt="Image of burger">
-<h1>Eat-Da-Burger</h1>
+<img src="/img/hamburger img.png" class="mx-auto d-block" alt="Image of burger" height="300em">
+<h1 class="text-center">Eat-Da-Burger</h1>
 
-<form action="/" method="POST">
-    <textarea name="task" id="" cols="30" rows="10"></textarea>
-    <button>Submit</button>
-    <h3>Enter a burger you want to eat. Click the "Submit" button.</h3>
-</form>
+<ul>
+    {{#each burgers}}
+    {{#unless devoured}}
+    <div class="card" style="width: 18rem">
+        <div class="card-body bg-light">
+            {{this.id}}
+            {{this.burger_name}}
+             <button>Devour it!</button>
+            
+        </div>
+    </div>
+
+   
+
+
+    {{/unless}}
+    {{/each}}
+</ul>
+
+
+
+<ul>
+    {{#each burgers}}
+    {{#if devoured}}
+
+<div class="card" style="width: 18rem">
+        <div class="card-body bg-light">
+            {{this.id}}
+            {{this.burger_name}}
+             <button>Devour it!</button>
+            
+        </div>
+
+    
+    {{/if}}
+    {{/each}}
+</ul>
+
+<div>
+    <form action="/" method="POST">
+        <textarea type="text" name="burgers" id="" cols="50" rows="5"></textarea>
+        <button type="submit">Submit</button>
+        <h3>Enter a burger you want to eat. Click the "Submit" button.</h3>
+    </form>
+</div>
