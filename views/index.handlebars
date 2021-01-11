@@ -8,12 +8,14 @@
         <div class="card-body bg-light">
             {{this.id}}
             {{this.burger_name}}
-             <button>Devour it!</button>
-            
+
+            <button class="text-right bg-danger" type="button" data-id="{{this.id}}" data-devoured="{{devoured}}">Devour
+                it!</button>
         </div>
+
     </div>
 
-   
+
 
 
     {{/unless}}
@@ -26,23 +28,22 @@
     {{#each burgers}}
     {{#if devoured}}
 
-<div class="card" style="width: 18rem">
+    <div class="card" style="width: 18rem">
         <div class="card-body bg-light">
             {{this.id}}
             {{this.burger_name}}
-             <button>Devour it!</button>
-            
+
         </div>
 
-    
-    {{/if}}
-    {{/each}}
+
+        {{/if}}
+        {{/each}}
 </ul>
 
 <div>
-    <form action="/" method="POST">
-        <textarea type="text" name="burgers" id="" cols="50" rows="5"></textarea>
-        <button type="submit">Submit</button>
-        <h3>Enter a burger you want to eat. Click the "Submit" button.</h3>
+    <form class="create-form" action="/" method="POST">
+        <textarea class="mx-auto d-block" type="text" name="burgers" id="createBurger" cols="50" rows="5"></textarea>
+        <button class="mx-auto d-block mt-2" type="submit">Submit</button>
+        <h3 class="text-center">Enter a burger you want to eat. Click the "Submit" button.</h3>
     </form>
 </div>
