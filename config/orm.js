@@ -2,12 +2,27 @@ const connection = require("../config/connection.js");
 
 //Create question marks
 function printQmarks(num) {
-  var arr = [];
+  let arr = [];
 
   for (var i = 0; i < num; i++) {
     arr.push("?");
   }
 
+  return arr.toString();
+}
+
+function objectTranslate(ob) {
+  let arr = [];
+
+  for (let key in ob) {
+    let value = ob[key];
+    if (Object.hasOwnProperty.call(ob, key)) {
+      if (typeof calue === "string" && value.indexOf(" ") >= 0) {
+        value = "'" + value + "'";
+      }
+      arr.push(key + "=" + value);
+    }
+  }
   return arr.toString();
 }
 const orm = {
@@ -38,13 +53,22 @@ const orm = {
     });
   },
 
-  updateBurger: function (table, values, condition, callback) {
-    const sqlQuery =
-      "UPDATE " + table + "SET" + values + " ? " + "WHERE" + condition;
+  updateBurger: function (table, objValues, condition, callback) {
+    var sqlQuery =
+      "UPDATE " +
+      table +
+      " SET " +
+      objectTranslate(objValues) +
+      " WHERE " +
+      condition;
+
     console.log(sqlQuery);
-    connection.query(sqlQuery, function (err, result) {
-      if (err) throw err;
-      callback(result);
+
+    connection.query(sqlQuery, function (err, res) {
+      if (err) {
+        throw err;
+      }
+      callback(res);
     });
   },
 };

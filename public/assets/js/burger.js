@@ -8,9 +8,25 @@ $(function () {
     };
     $.ajax("/api/burgers", {
       type: "POST",
-      data: createBurger
+      data: createBurger,
     }).then(function () {
       console.log("New burger added");
+      location.reload();
+    });
+  });
+  $("#devourBurger").on("click", function (event) {
+    event.preventDefault();
+
+    let id = $(this).data("id");
+    let devouredChange = {
+      devoured: 1,
+    };
+    console.log(devouredChange);
+    $.ajax("/api/burgers/" + id, {
+      type: "PUT",
+      data: devouredChange,
+    }).then(function() {
+      console.log("Burger devoured");
       location.reload();
     });
   });

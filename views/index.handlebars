@@ -1,22 +1,23 @@
 <img src="/img/hamburger img.png" class="mx-auto d-block" alt="Image of burger" height="300em">
 <h1 class="text-center">Eat-Da-Burger</h1>
 
+<div class="container">
+
 <ul>
     {{#each burgers}}
     {{#unless devoured}}
-    <div class="card" style="width: 18rem">
-        <div class="card-body bg-light">
-            {{this.id}}
-            {{this.burger_name}}
 
-            <button class="text-right bg-danger" type="button" data-id="{{this.id}}" data-devoured="{{devoured}}">Devour
+    <div class="row justify-content-between">
+        <div class="col-3 bg-light">
+            {{this.id}} - {{this.burger_name}} 
+
+            <button class="text-right bg-danger" id="devourBurger" type="button" data-id="{{this.id}}"
+                data-devouredChange="{{devour}}">Devour
                 it!</button>
         </div>
 
+
     </div>
-
-
-
 
     {{/unless}}
     {{/each}}
@@ -28,22 +29,23 @@
     {{#each burgers}}
     {{#if devoured}}
 
-    <div class="card" style="width: 18rem">
-        <div class="card-body bg-light">
-            {{this.id}}
-            {{this.burger_name}}
+    <div class="row justify-content-between">
+        <div class="col-6">
+            {{this.id}} - {{this.burger_name}}
+
 
         </div>
 
 
-        {{/if}}
-        {{/each}}
+    </div>
+    {{/if}}
+    {{/each}}
 </ul>
 
-<div>
-    <form class="create-form" action="/" method="POST">
-        <textarea class="mx-auto d-block" type="text" name="burgers" id="createBurger" cols="50" rows="5"></textarea>
-        <button class="mx-auto d-block mt-2" type="submit">Submit</button>
-        <h3 class="text-center">Enter a burger you want to eat. Click the "Submit" button.</h3>
-    </form>
+</div>
+<form class="create-form" action="/" method="POST">
+    <textarea class="mx-auto d-block" type="text" name="burgers" id="createBurger" cols="50" rows="3"></textarea>
+    <button class="mx-auto d-block mt-2" type="submit">Submit</button>
+    <h3 class="text-center">Enter a burger you want to eat. Click the "Submit" button.</h3>
+</form>
 </div>
