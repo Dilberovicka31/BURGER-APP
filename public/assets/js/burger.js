@@ -31,14 +31,14 @@ $(function () {
     });
   });
 
-  $("#deleteBurger").on("click", function (event) {
+  $("#deleteBtn").on("click", function (event) {
+    event.preventDefault();
 
     let id = $(this).data("id");
 
-    $.ajax("/api/burgers/" + id, {
+    $.ajax({
       type: "DELETE",
-    }).then( function(){
-      location.reload();
-    });
+      url: "/api/burgers/" + id
+    }).then(location.reload());
   });
 });

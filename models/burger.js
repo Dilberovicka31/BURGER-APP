@@ -17,6 +17,11 @@ var burger = {
       callback(response);
     });
   },
+  deleteBurger: function(condition, callback){
+    orm.deleteBurger("burgers", condition, function(res){
+      callback(res);
+    })
+  }
 };
 //Export module
 module.exports = burger;
