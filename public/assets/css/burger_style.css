@@ -13,3 +13,14 @@ body {
 .jumbotron {
   min-height: 200px;
 }
+.btn{
+    background-color: #9A467F;
+    color: white;
+}
+#enterBurger{
+    background-color: #EFD29F;
+}
+/* #submitBtn{
+    background-color: #5d163a;
+    color: white;
+} */
