@@ -25,8 +25,19 @@ $(function () {
     $.ajax("/api/burgers/" + id, {
       type: "PUT",
       data: devouredChange,
-    }).then(function() {
+    }).then(function () {
       console.log("Burger devoured");
+      location.reload();
+    });
+  });
+
+  $("#deleteBtn").on("click", function (event) {
+
+    let id = $(this).data("id");
+
+    $.ajax("/api/burgers/" + id, {
+      type: "DELETE",
+    }).then( function(){
       location.reload();
     });
   });

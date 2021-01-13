@@ -1,4 +1,5 @@
-const connection = require("../config/connection.js");
+const { response } = require("express");
+let connection = require("../config/connection.js");
 
 //Create question marks
 function printQmarks(num) {
@@ -17,7 +18,7 @@ function objectTranslate(ob) {
   for (let key in ob) {
     let value = ob[key];
     if (Object.hasOwnProperty.call(ob, key)) {
-      if (typeof calue === "string" && value.indexOf(" ") >= 0) {
+      if (typeof value === "string" && value.indexOf(" ") >= 0) {
         value = "'" + value + "'";
       }
       arr.push(key + "=" + value);
@@ -54,7 +55,7 @@ const orm = {
   },
 
   updateBurger: function (table, objValues, condition, callback) {
-    var sqlQuery =
+    const sqlQuery =
       "UPDATE " +
       table +
       " SET " +
@@ -69,6 +70,18 @@ const orm = {
         throw err;
       }
       callback(res);
+    });
+  },
+
+  deleteBurger: function (table, condition, callback) {
+    var sqlQuery = "DELETE FROM " + table + " WHERE " + condition;
+    console.log(sqlQuery);
+
+    connection.query(sqlQuery, function (err, result) {
+      if (err) {
+        throw err;
+      }
+      callback(result);
     });
   },
 };

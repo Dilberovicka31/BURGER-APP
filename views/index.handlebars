@@ -1,51 +1,81 @@
-<img src="/img/hamburger img.png" class="mx-auto d-block" alt="Image of burger" height="300em">
-<h1 class="text-center">Eat-Da-Burger</h1>
+<div class="jumbotron bg-cover" <div class="container">
+
+    <h1 class="text-center mb-5 display-1">Eat-Da-Burger</h1>
+    {{!-- <img src="/img/a-sandwich-2497622__340.jpg" alt=""> --}}
+</div>
+</div>
+
+<form class="create-form" action="/" method="POST">
+
+    <h1 class="text-center display-5 bg-light"><strong> Enter a burger you want to eat. Click the "Submit" button.</strong></h1>
+
+    <textarea class="mx-auto d-block" type="text" name="burgers" id="createBurger" cols="50" rows="3"></textarea>
+    <button class="mx-auto d-block mb-5" type="submit">Submit</button>
+</form>
 
 <div class="container">
+    <div class="row">
 
-<ul>
-    {{#each burgers}}
-    {{#unless devoured}}
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-title h2">Burgers I would like to eat</div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
 
-    <div class="row justify-content-between">
-        <div class="col-3 bg-light">
-            {{this.id}} - {{this.burger_name}} 
+                        <ul>
+                            {{#each burgers}}
+                            {{#unless devoured}}
+                            <span><strong> {{this.id}} - {{this.burger_name}}</strong></span> <br>
+                            <button class="btn btn-light btn-sm" id="devourBurger" type="button" data-id="{{this.id}}"
+                                data-devouredChange="{{devour}}">Devour
+                                it!</button>
+                            <hr>
+                            {{/unless}}
+                            {{/each}}
 
-            <button class="text-right bg-danger" id="devourBurger" type="button" data-id="{{this.id}}"
-                data-devouredChange="{{devour}}">Devour
-                it!</button>
+                        </ul>
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-title h2"> Devoured Burgers</div>
+                <div class="card-body">
+                    <div>
+                        <div class="list-group list-group-flush">
+                            <ul>
+
+                                {{!-- <a href="#" class="list-group-item list-group-item-action"></a> --}}
+                                {{#each burgers}}
+                                {{#if devoured}}
+
+                                <span><strong> {{this.id}} - {{this.burger_name}}</strong></span><br>
+
+                                <button class="btn btn-secondary btn-sm" id="deleteBurger" type="button"
+                                    data-id="{{this.id}}" data-devouredChange="{{devour}}">Delete</button>
+                                <hr>
+                                {{/if}}
+                                {{/each}}
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
 
 
     </div>
-
-    {{/unless}}
-    {{/each}}
-</ul>
-
-
-
-<ul>
-    {{#each burgers}}
-    {{#if devoured}}
-
-    <div class="row justify-content-between">
-        <div class="col-6">
-            {{this.id}} - {{this.burger_name}}
-
-
-        </div>
-
-
-    </div>
-    {{/if}}
-    {{/each}}
-</ul>
-
 </div>
-<form class="create-form" action="/" method="POST">
-    <textarea class="mx-auto d-block" type="text" name="burgers" id="createBurger" cols="50" rows="3"></textarea>
-    <button class="mx-auto d-block mt-2" type="submit">Submit</button>
-    <h3 class="text-center">Enter a burger you want to eat. Click the "Submit" button.</h3>
-</form>
+
 </div>
